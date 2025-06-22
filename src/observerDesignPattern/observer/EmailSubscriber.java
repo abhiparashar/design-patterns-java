@@ -1,4 +1,4 @@
-package observer;
+package observerDesignPattern.observer;
 
 public class EmailSubscriber implements Observer {
     private String email;

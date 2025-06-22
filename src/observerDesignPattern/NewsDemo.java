@@ -1,8 +1,10 @@
-import observer.EmailSubscriber;
-import observer.MobileAppSubscriber;
-import observer.NewsPublisher;
+package observerDesignPattern;
 
-// NewsDemo.java
+import observerDesignPattern.observer.EmailSubscriber;
+import observerDesignPattern.observer.MobileAppSubscriber;
+import observerDesignPattern.observer.NewsPublisher;
+
+// observerDesignPateern.NewsDemo.java
 public class NewsDemo {
     public static void main(String[] args) {
         // Create our news publisher

@@ -1,4 +1,4 @@
-package observer;
+package observerDesignPattern.observer;
 
 public class MobileAppSubscriber implements Observer {
     private String username;

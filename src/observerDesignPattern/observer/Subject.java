@@ -1,4 +1,4 @@
-package observer;
+package observerDesignPattern.observer;
 
 public interface Subject {
     void attach(Observer observer);

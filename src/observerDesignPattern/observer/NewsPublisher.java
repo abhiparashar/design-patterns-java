@@ -1,4 +1,4 @@
-package observer;
+package observerDesignPattern.observer;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.List;
