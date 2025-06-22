@@ -13,16 +13,16 @@ public class NewsDemo {
         EmailSubscriber mary = new EmailSubscriber("mary@example.com");
         MobileAppSubscriber alex = new MobileAppSubscriber("alex_mobile");
 
-        // Add them to the publisher
-        publisher.addEmailSubscriber(john);
-        publisher.addEmailSubscriber(mary);
-        publisher.addMobileSubscriber(alex);
+        // Add them to the publisher using the new unified method
+        publisher.attach(john);
+        publisher.attach(mary);
+        publisher.attach(alex);
 
         // Publish some news
         publisher.publishNews("Breaking: Java Is Awesome!");
 
-        // Remove one subscriber
-        publisher.removeEmailSubscriber(john);
+        // Remove one subscriber using the new unified method
+        publisher.detach(john);
 
         // Publish more news
         publisher.publishNews("Update: John Unsubscribed!");

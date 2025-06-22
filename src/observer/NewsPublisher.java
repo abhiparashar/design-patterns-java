@@ -1,46 +1,35 @@
 package observer;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.List;
 
-public class NewsPublisher {
+public class NewsPublisher implements Subject {
     // The current headline
-    private String latestNews;
+    private volatile String latestNews;
 
     // A list to keep track of who wants our news
-    private List<EmailSubscriber> emailSubscribers = new ArrayList<>();
-    private List<MobileAppSubscriber> mobileSubscribers = new ArrayList<>();
+    private List<Observer> observers = new CopyOnWriteArrayList<>();
 
     // Method to publish a news headline
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(latestNews);
+        }
+    }
+
+    @Override
+    public synchronized void attach(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public synchronized void detach(Observer observer) {
+        observers.remove(observer);
+    }
+
     public void publishNews(String news) {
         this.latestNews = news;
-
-        // Tell all email subscribers
-        for (EmailSubscriber subscriber : emailSubscribers) {
-            subscriber.receiveNewsUpdate(latestNews);
-        }
-
-        // Tell all mobile subscribers
-        for (MobileAppSubscriber subscriber : mobileSubscribers) {
-            subscriber.receiveNewsUpdate(latestNews);
-        }
-    }
-
-    // Methods to add/remove email subscribers
-    public void addEmailSubscriber(EmailSubscriber subscriber) {
-        emailSubscribers.add(subscriber);
-    }
-
-    public void removeEmailSubscriber(EmailSubscriber subscriber) {
-        emailSubscribers.remove(subscriber);
-    }
-
-    // Methods to add/remove mobile subscribers
-    public void addMobileSubscriber(MobileAppSubscriber subscriber) {
-        mobileSubscribers.add(subscriber);
-    }
-
-    public void removeMobileSubscriber(MobileAppSubscriber subscriber) {
-        mobileSubscribers.remove(subscriber);
+        notifyObservers();
     }
 }
